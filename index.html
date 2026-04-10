@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UP7 Performance — Sites que Vendem de Verdade</title>
+<meta name="description" content="A UP7 Performance cria sites profissionais que geram leads qualificados e aumentam suas vendas."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050507;--sf:#0a0a0f;--sf2:#111118;--bd:#1a1a24;--bd2:#252535;
+  --tx:#f0f0f8;--txd:#8080a0;--txm:#3a3a50;
+  --red:#ff0000;--redb:#ff3333;--redg:rgba(255,0,0,.25);--redd:rgba(255,0,0,.10);
+  --sans:'Inter',sans-serif;--head:'Barlow Condensed',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;opacity:.03;pointer-events:none;z-index:9999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+@keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%{transform:scale(1);opacity:1}70%{transform:scale(1.7);opacity:0}100%{transform:scale(1.7);opacity:0}}
+@keyframes neon{0%,100%{text-shadow:0 0 20px rgba(255,0,0,.7),0 0 40px rgba(255,0,0,.4)}50%{text-shadow:0 0 40px #ff0000,0 0 80px rgba(255,0,0,.7),0 0 120px rgba(255,0,0,.3)}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px var(--redg)}50%{box-shadow:0 0 40px rgba(255,0,0,.5)}}
+@keyframes scan{0%{top:-2px}100%{top:100%}}
+@keyframes bdglow{0%,100%{border-color:rgba(255,0,0,.3)}50%{border-color:rgba(255,0,0,.85)}}
+
+.fu{animation:fade-up .6s ease both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}.d5{animation-delay:.5s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:12px 40px;background:rgba(5,5,7,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd)}
+nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--red),transparent)}
+.nlogo{text-decoration:none}
+.nlogo-t{font-family:var(--head);font-size:24px;font-weight:900;color:var(--red);text-shadow:0 0 16px rgba(255,0,0,.5);letter-spacing:1px;line-height:1}
+.nlogo-s{font-size:9px;font-weight:700;letter-spacing:3px;color:var(--txd);text-transform:uppercase}
+.ncta{display:flex;align-items:center;gap:8px;padding:10px 20px;background:var(--red);color:#fff;font-weight:700;font-size:13px;text-decoration:none;transition:all .2s;border:none;cursor:pointer;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.ncta:hover{background:var(--redb);box-shadow:0 0 24px var(--redg)}
+.nlinks{display:flex;gap:24px;list-style:none}
+.nlinks a{color:var(--txd);font-size:13px;text-decoration:none;transition:color .2s}
+.nlinks a:hover{color:var(--tx)}
+@media(max-width:768px){nav{padding:11px 16px}.nlinks{display:none}}
+
+/* HERO */
+.hero-wrap{min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(255,0,0,.07) 0%,transparent 65%);top:50%;right:0;transform:translateY(-50%);pointer-events:none}
+.speed-l{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.speed-l span{position:absolute;height:1px;left:-10%;right:-10%;background:linear-gradient(to right,transparent,rgba(255,0,0,.1),transparent)}
+.speed-l span:nth-child(1){top:30%;transform:rotate(-4deg)}
+.speed-l span:nth-child(2){top:50%;transform:rotate(-2deg);opacity:.6}
+.speed-l span:nth-child(3){top:70%;transform:rotate(3deg);opacity:.4}
+
+.hero-grid{flex:1;display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:44px;padding:90px 60px 36px;max-width:1280px;width:100%;margin:0 auto}
+
+/* HERO LEFT */
+.hero-l{display:flex;flex-direction:column;align-items:flex-start}
+.hbadge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;background:var(--redd);border:1px solid rgba(255,0,0,.4);font-size:10px;font-weight:800;color:#ff5555;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;animation:bdglow 3s ease-in-out infinite}
+.hbadge::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;animation:pulse 2s ease-out infinite;box-shadow:0 0 8px var(--red)}
+.hero-l h1{font-family:var(--head);font-size:clamp(36px,3.8vw,58px);font-weight:900;line-height:.95;letter-spacing:-1px;margin-bottom:18px;text-transform:uppercase}
+.hero-l h1 em{font-style:normal;color:var(--red);animation:neon 3s ease-in-out infinite;display:block}
+.htriggers{display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
+.htrigger{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--txd);line-height:1.4}
+.htrigger .ico{font-size:14px;flex-shrink:0;margin-top:1px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.btn-p{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;background:var(--red);color:#fff;font-weight:800;font-size:14px;text-decoration:none;transition:all .25s;border:none;cursor:pointer;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));animation:glow 3s ease-in-out infinite}
+.btn-p:hover{background:var(--redb);transform:translateY(-2px);box-shadow:0 10px 36px rgba(255,0,0,.5)}
+.btn-s{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;background:transparent;color:var(--tx);font-weight:600;font-size:14px;text-decoration:none;border:1px solid var(--bd2);transition:all .25s;cursor:pointer}
+.btn-s:hover{background:var(--sf);border-color:rgba(255,0,0,.3)}
+.hproof{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--txm)}
+.pavs{display:flex}
+.pav{width:26px;height:26px;background:var(--red);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:#fff;margin-left:-7px;clip-path:polygon(0 0,calc(100% - 4px) 0,100% 4px,100% 100%,4px 100%,0 calc(100% - 4px))}
+.pav:first-child{margin-left:0}
+.pstars{color:var(--red);letter-spacing:2px;font-size:11px;text-shadow:0 0 8px rgba(255,0,0,.5)}
+
+/* HERO RIGHT - VIDEO */
+.hero-r{display:flex;flex-direction:column;gap:10px}
+.vwrap{width:100%;border:1px solid rgba(255,0,0,.25);box-shadow:0 0 50px rgba(255,0,0,.07),0 20px 60px rgba(0,0,0,.6);position:relative;overflow:hidden}
+.vwrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--red),transparent);z-index:2}
+.vbox{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,var(--sf),var(--sf2));cursor:pointer;position:relative;overflow:hidden}
+.vbox::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,0,0,.07) 0%,transparent 65%)}
+.vbox::after{content:'';position:absolute;width:100%;height:2px;background:linear-gradient(to right,transparent,rgba(255,0,0,.12),transparent);animation:scan 5s linear infinite}
+.play{width:72px;height:72px;background:var(--red);display:flex;align-items:center;justify-content:center;transition:all .25s;position:relative;z-index:1;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+.play::before{content:'';position:absolute;inset:0;border:2px solid var(--red);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));animation:pulse 2s ease-out infinite}
+.play svg{margin-left:5px}
+.vbox:hover .play{background:var(--redb);transform:scale(1.08);box-shadow:0 0 40px var(--redg)}
+.vlabel{font-size:12px;color:var(--txd);position:relative;z-index:1;text-align:center;padding:0 20px;line-height:1.5}
+
+/* URGENCY ROW */
+.vurg{display:flex;background:var(--sf);border:1px solid var(--bd);border-top:2px solid var(--red)}
+.vurg-item{flex:1;padding:12px 16px;display:flex;flex-direction:column;gap:2px}
+.vurg-sep{width:1px;background:var(--bd);flex-shrink:0}
+.vurg-n{font-family:var(--head);font-size:20px;font-weight:900;color:var(--red);text-shadow:0 0 14px rgba(255,0,0,.5)}
+.vurg-t{font-size:11px;color:var(--txd);line-height:1.35}
+
+/* STATS BAR */
+.stats-wrap{border-top:1px solid var(--bd);background:var(--sf);position:relative}
+.stats-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--red),transparent)}
+.stats{display:flex;max-width:1280px;margin:0 auto}
+.stat{flex:1;padding:18px 16px;text-align:center;border-right:1px solid var(--bd);transition:background .2s}
+.stat:last-child{border-right:none}
+.stat:hover{background:var(--sf2)}
+.stat-n{font-family:var(--head);font-size:26px;font-weight:900;color:var(--red);text-shadow:0 0 16px rgba(255,0,0,.5)}
+.stat-l{font-size:10px;color:var(--txd);margin-top:3px;letter-spacing:.5px}
+
+/* MOBILE: video primeiro */
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;padding:80px 20px 24px;gap:24px}
+  .hero-r{order:-1}
+  .hero-l{align-items:center;text-align:center}
+  .htriggers{text-align:left;width:100%}
+  .hero-actions{justify-content:center}
+  .stats{flex-wrap:wrap}
+  .stat{flex:0 0 50%;border-bottom:1px solid var(--bd)}
+  .stat:nth-child(3),.stat:nth-child(4){border-bottom:none}
+}
+
+/* SECTIONS */
+.sec{padding:90px 20px}
+.cnt{max-width:1100px;margin:0 auto}
+.sbadge{display:inline-flex;align-items:center;padding:4px 14px;background:var(--redd);border:1px solid rgba(255,0,0,.25);font-size:10px;font-weight:800;color:#ff5555;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
+.stitle{font-family:var(--head);font-size:clamp(28px,4vw,52px);font-weight:900;line-height:.97;letter-spacing:-.5px;margin-bottom:16px;text-transform:uppercase}
+.stitle em{font-style:normal;color:var(--red);text-shadow:0 0 24px rgba(255,0,0,.4)}
+.ssub{font-size:15px;color:var(--txd);line-height:1.65;max-width:540px}
+.rline{width:50px;height:3px;background:linear-gradient(to right,var(--red),transparent);margin:14px 0}
+
+/* PROBLEM */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;margin-top:48px;background:var(--bd);border:1px solid var(--bd)}
+.pcard{padding:26px;background:var(--sf);display:flex;gap:14px;transition:background .2s;position:relative;overflow:hidden}
+.pcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--red);transform:scaleY(0);transition:transform .25s;transform-origin:bottom}
+.pcard:hover{background:var(--sf2)}.pcard:hover::before{transform:scaleY(1)}
+.picon{font-size:24px;flex-shrink:0}
+.ptxt h4{font-size:14px;font-weight:700;margin-bottom:5px}
+.ptxt p{font-size:13px;color:var(--txd);line-height:1.55}
+
+/* SERVICES */
+.svsec{background:var(--sf);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);position:relative}
+.svsec::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--red),transparent)}
+.svgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1px;margin-top:48px;background:var(--bd);border:1px solid var(--bd)}
+.svcard{padding:30px;background:var(--bg);transition:background .3s;position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block}
+.svcard.feat{background:linear-gradient(135deg,rgba(255,0,0,.05),var(--bg))}
+.svcard.feat .svbar{background:var(--red);box-shadow:0 0 10px var(--redg)}
+.svcard.feat::before{content:'MAIS POPULAR';position:absolute;top:14px;right:0;padding:3px 14px;background:var(--red);color:#fff;font-size:9px;font-weight:800;letter-spacing:1.5px;clip-path:polygon(8px 0,100% 0,100% 100%,0 100%)}
+.svcard:hover{background:var(--sf)}.svcard:hover .svbar{background:var(--red)}
+.svbar{width:100%;height:2px;margin-bottom:24px;background:var(--bd2)}
+.svico{width:44px;height:44px;background:var(--redd);border:1px solid rgba(255,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.svcard h3{font-size:17px;font-weight:800;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.svcard p{font-size:13px;color:var(--txd);line-height:1.6;margin-bottom:18px}
+.svlist{list-style:none;display:flex;flex-direction:column;gap:7px}
+.svlist li{font-size:12px;color:var(--txd);display:flex;align-items:center;gap:7px}
+.svlist li::before{content:'▸';color:var(--red);font-size:10px;flex-shrink:0}
+.svlink{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:12px;font-weight:800;color:var(--red);text-decoration:none;letter-spacing:1px;text-transform:uppercase}
+.svlink svg{transition:transform .2s}
+.svcard:hover .svlink svg{transform:translateX(5px)}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:48px;position:relative}
+.steps::before{content:'';position:absolute;top:33px;left:10%;right:10%;height:1px;background:linear-gradient(to right,transparent,rgba(255,0,0,.35),transparent)}
+.step{padding:0 18px 28px;text-align:center}
+.stepn{width:66px;height:66px;background:var(--sf);border:1px solid rgba(255,0,0,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:var(--head);font-size:24px;font-weight:900;color:var(--red);text-shadow:0 0 16px rgba(255,0,0,.5);position:relative;z-index:1;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.step h4{font-size:13px;font-weight:800;margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px}
+.step p{font-size:12px;color:var(--txd);line-height:1.55}
+
+/* RESULTS */
+.ressec{background:var(--sf);border-top:1px solid var(--bd);position:relative}
+.ressec::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--red),transparent)}
+.resgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;margin-top:44px;background:var(--bd);border:1px solid var(--bd)}
+.rescard{padding:30px 26px;background:var(--bg);position:relative;transition:background .2s}
+.rescard:hover{background:var(--sf2)}
+.rescard::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,var(--red),transparent)}
+.resn{font-family:var(--head);font-size:48px;font-weight:900;color:var(--red);text-shadow:0 0 28px rgba(255,0,0,.5);line-height:1;margin-bottom:6px;letter-spacing:-1px}
+.resl{font-size:11px;font-weight:800;margin-bottom:8px;text-transform:uppercase;letter-spacing:1.5px;color:var(--txd)}
+.resd{font-size:12px;color:var(--txm);line-height:1.5}
+
+/* TESTIMONIALS */
+.testgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1px;margin-top:44px;background:var(--bd);border:1px solid var(--bd)}
+.testcard{padding:28px;background:var(--sf);transition:background .25s;position:relative}
+.testcard::before{content:'"';position:absolute;top:16px;right:20px;font-family:var(--head);font-size:80px;font-weight:900;color:rgba(255,0,0,.07);line-height:1}
+.testcard:hover{background:var(--sf2)}
+.tstars{color:var(--red);font-size:13px;margin-bottom:12px;letter-spacing:3px}
+.ttxt{font-size:13px;line-height:1.7;color:var(--txd);margin-bottom:18px}
+.tauthor{display:flex;align-items:center;gap:10px}
+.tav{width:36px;height:36px;background:var(--red);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#fff;flex-shrink:0;clip-path:polygon(0 0,calc(100% - 5px) 0,100% 5px,100% 100%,5px 100%,0 calc(100% - 5px))}
+.tname{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}
+.trole{font-size:11px;color:var(--txm)}
+
+/* FORM */
+.formsec{background:var(--bg);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);position:relative}
+.formsec::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--red),transparent)}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:768px){.formgrid{grid-template-columns:1fr;gap:36px}}
+.fbens{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:12px}
+.fbens li{display:flex;align-items:flex-start;gap:10px;font-size:14px}
+.ficon{width:28px;height:28px;flex-shrink:0;background:var(--redd);border:1px solid rgba(255,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:13px}
+.fbox{background:var(--sf);border:1px solid var(--bd);padding:32px;position:relative;overflow:hidden}
+.fbox::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--red),#cc0000,transparent)}
+.ftitle{font-family:var(--head);font-size:22px;font-weight:900;margin-bottom:5px;text-transform:uppercase}
+.fsub{font-size:12px;color:var(--txd);margin-bottom:24px}
+.fg{margin-bottom:13px}
+.fg label{display:block;font-size:10px;font-weight:800;margin-bottom:5px;color:var(--txd);text-transform:uppercase;letter-spacing:1px}
+.fg input,.fg select{width:100%;padding:11px 13px;background:var(--bg);border:1px solid var(--bd2);color:var(--tx);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .2s}
+.fg input::placeholder{color:var(--txm)}
+.fg input:focus,.fg select:focus{border-color:rgba(255,0,0,.6);box-shadow:0 0 0 2px rgba(255,0,0,.08)}
+.fg select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238080a0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center}
+.fg select option{background:#0a0a0f}
+.fsubmit{width:100%;padding:15px;background:var(--red);color:#fff;font-weight:900;font-size:14px;border:none;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:9px;margin-top:6px;letter-spacing:1px;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+.fsubmit:hover{background:var(--redb);transform:translateY(-2px);box-shadow:0 10px 36px rgba(255,0,0,.45)}
+.fnote{text-align:center;font-size:11px;color:var(--txm);margin-top:10px}
+
+/* FAQ */
+.faqlist{margin-top:44px;display:flex;flex-direction:column;gap:1px;max-width:740px;background:var(--bd);border:1px solid var(--bd)}
+.faqi{background:var(--sf)}
+.faqq{width:100%;padding:18px 22px;background:transparent;border:none;color:var(--tx);font-family:var(--sans);font-size:14px;font-weight:600;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;transition:background .2s}
+.faqq:hover{background:var(--sf2)}
+.faqarr{width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s;color:var(--txm);background:var(--bg)}
+.faqi.open .faqarr{transform:rotate(180deg);color:var(--red)}
+.faqa{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .2s;padding:0 22px;font-size:13px;color:var(--txd);line-height:1.7}
+.faqi.open .faqa{max-height:180px;padding:0 22px 18px}
+
+/* FINAL CTA */
+.cta-sec{text-align:center;position:relative;overflow:hidden;padding:100px 20px}
+.cta-sec::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(255,0,0,.07) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-sec .stitle{font-size:clamp(32px,5vw,64px);max-width:720px;margin:0 auto 16px}
+.cta-sec .ssub{margin:0 auto 36px;text-align:center}
+.wbtn{display:inline-flex;align-items:center;gap:11px;padding:17px 40px;background:#1da752;color:#fff;font-weight:900;font-size:16px;text-decoration:none;transition:all .25s;border:none;cursor:pointer;box-shadow:0 8px 36px rgba(29,167,82,.3);letter-spacing:1px;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+.wbtn:hover{background:#25d366;transform:translateY(-3px);box-shadow:0 14px 44px rgba(29,167,82,.45)}
+.wguarantee{margin-top:16px;font-size:11px;color:var(--txm);letter-spacing:1.5px;text-transform:uppercase}
+
+/* FOOTER */
+footer{padding:32px 20px;border-top:1px solid var(--bd);position:relative}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(255,0,0,.3),transparent)}
+.foot{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.flt{font-family:var(--head);font-size:20px;font-weight:900;color:var(--red);text-shadow:0 0 14px rgba(255,0,0,.4)}
+.fls{font-size:9px;font-weight:700;letter-spacing:3px;color:var(--txm);text-transform:uppercase}
+.ftxt{font-size:12px;color:var(--txm)}
+.flinks{display:flex;gap:18px}
+.flinks a{font-size:12px;color:var(--txm);text-decoration:none;transition:color .2s;text-transform:uppercase;letter-spacing:.5px}
+.flinks a:hover{color:var(--red)}
+
+/* FLOAT WPP */
+.fwpp{position:fixed;bottom:24px;right:24px;width:54px;height:54px;background:#1da752;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(29,167,82,.4);text-decoration:none;z-index:50;transition:all .25s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.fwpp::before{content:'';position:absolute;inset:-7px;border:2px solid #1da752;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));animation:pulse 2.5s ease-out infinite}
+.fwpp:hover{background:#25d366;transform:scale(1.08)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.on{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}.rv.d5{transition-delay:.5s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nlogo"><div class="nlogo-t">UP7</div><div class="nlogo-s">Performance</div></a>
+  <ul class="nlinks">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#resultados">Resultados</a></li>
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#contato" class="ncta">Falar com especialista <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero-glow"></div>
+  <div class="speed-l"><span></span><span></span><span></span></div>
+
+  <div class="hero-grid">
+
+    <!-- ESQUERDA -->
+    <div class="hero-l">
+      <div class="hbadge fu d1">Agência de Performance Digital</div>
+      <h1 class="fu d2">
+        Seu site<br/>
+        <em>não vende.</em>
+        O da concorrência,<br/>vende.
+      </h1>
+      <div class="htriggers fu d3">
+        <div class="htrigger"><span class="ico">🔥</span><span>Enquanto você lê isso, um concorrente está captando seu cliente</span></div>
+        <div class="htrigger"><span class="ico">💀</span><span>Site sem conversão é dinheiro jogado fora em tráfego pago</span></div>
+        <div class="htrigger"><span class="ico">⚡</span><span>Você tem 3 segundos para convencer — ou o visitante some</span></div>
+      </div>
+      <div class="hero-actions fu d4">
+        <a href="#contato" class="btn-p">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.55 4.116 1.512 5.849L0 24l6.335-1.502A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          Quero um site que vende
+        </a>
+        <a href="#" onclick="playVideo(event)" class="btn-s">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Assistir apresentação
+        </a>
+      </div>
+      <div class="hproof fu d5">
+        <div class="pavs"><div class="pav">R</div><div class="pav">A</div><div class="pav">F</div><div class="pav">+</div></div>
+        <div><div class="pstars">★★★★★</div><span>+200 empresas já vendem mais com a UP7</span></div>
+      </div>
+    </div>
+
+    <!-- DIREITA: VÍDEO -->
+    <div class="hero-r fu d3" id="video-section">
+      <div class="vwrap">
+        <div class="vbox" id="vbox" onclick="handleVideoClick()">
+          <div class="play"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+          <p class="vlabel">Veja como um site transforma<br/>visitantes em clientes pagantes</p>
+        </div>
+      </div>
+      <div class="vurg">
+        <div class="vurg-item"><div class="vurg-n">3 seg</div><div class="vurg-t">é tudo que você tem para prender a atenção do visitante</div></div>
+        <div class="vurg-sep"></div>
+        <div class="vurg-item"><div class="vurg-n">73%</div><div class="vurg-t">dos leads ignoram sites lentos ou sem CTA claro</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-wrap">
+    <div class="stats">
+      <div class="stat"><div class="stat-n">+200</div><div class="stat-l">Sites entregues</div></div>
+      <div class="stat"><div class="stat-n">3x</div><div class="stat-l">Mais leads em média</div></div>
+      <div class="stat"><div class="stat-n">R$2M+</div><div class="stat-l">Tráfego gerenciado</div></div>
+      <div class="stat"><div class="stat-n">92%</div><div class="stat-l">Taxa de satisfação</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="sec" id="problema">
+  <div class="cnt">
+    <div class="rv"><div class="sbadge">O problema</div><h2 class="stitle">Por que seu site<br/><em>não converte?</em></h2><div class="rline"></div><br/><p class="ssub">A maioria dos sites foi feito pra parecer bonito — não pra vender. Aqui está o que está te custando dinheiro:</p></div>
+    <div class="pgrid">
+      <div class="pcard rv d1"><div class="picon">🐌</div><div class="ptxt"><h4>Carregamento lento</h4><p>53% abandona um site que demora mais de 3 segundos. Você paga tráfego e perde na chegada.</p></div></div>
+      <div class="pcard rv d2"><div class="picon">❌</div><div class="ptxt"><h4>CTA fraco ou inexistente</h4><p>Sem chamada clara, o visitante vai embora. Sem formulário, sem botão de WhatsApp, sem captura.</p></div></div>
+      <div class="pcard rv d3"><div class="picon">📱</div><div class="ptxt"><h4>Não funciona no celular</h4><p>+70% do tráfego é mobile. Sites mal construídos espantam seus melhores leads.</p></div></div>
+      <div class="pcard rv d4"><div class="picon">🔍</div><div class="ptxt"><h4>Invisível no Google</h4><p>Sem SEO técnico, seu site não aparece pra quem já quer comprar.</p></div></div>
+      <div class="pcard rv d5"><div class="picon">💸</div><div class="ptxt"><h4>Tráfego pago desperdiçado</h4><p>Investir em Google Ads num site que não converte é encher um balde furado.</p></div></div>
+      <div class="pcard rv"><div class="picon">📊</div><div class="ptxt"><h4>Zero rastreamento</h4><p>Sem pixels, sem GA4. Você não sabe de onde vêm os leads nem o que funciona.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec svsec" id="servicos">
+  <div class="cnt">
+    <div class="rv"><div class="sbadge">Nossos serviços</div><h2 class="stitle">Tudo que você precisa<br/>para <em>escalar suas vendas</em></h2><div class="rline"></div><br/><p class="ssub">Da presença digital ao gerenciamento de anúncios — executamos a estratégia completa.</p></div>
+    <div class="svgrid">
+      <div class="svcard feat rv d1">
+        <div class="svbar"></div><div class="svico">🚀</div>
+        <h3>Site que Vende</h3>
+        <p>Landing pages e sites desenvolvidos com foco em conversão. Rápidos, responsivos, integrados com WhatsApp.</p>
+        <ul class="svlist"><li>Design personalizado para seu negócio</li><li>SEO técnico + velocidade máxima</li><li>WhatsApp + formulários integrados</li><li>Pixel Meta + Google Analytics 4</li><li>Mobile-first</li></ul>
+        <a href="#contato" class="svlink">Quero meu site <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="svcard rv d2">
+        <div class="svbar"></div><div class="svico">🎯</div>
+        <h3>Google Ads</h3>
+        <p>Apareça no exato momento em que seu cliente está buscando o que você vende.</p>
+        <ul class="svlist"><li>Pesquisa, Display e YouTube</li><li>Criação e otimização de campanhas</li><li>Relatório semanal de performance</li><li>Ajuste contínuo de lances</li></ul>
+        <a href="#contato" class="svlink">Saber mais <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="svcard rv d3">
+        <div class="svbar"></div><div class="svico">📣</div>
+        <h3>Meta Ads</h3>
+        <p>Facebook e Instagram com segmentação cirúrgica para gerar leads qualificados.</p>
+        <ul class="svlist"><li>Campanhas de Leads e Conversão</li><li>Criação de criativos (imagem/vídeo)</li><li>A/B testing constante</li><li>Remarketing e lookalike audiences</li></ul>
+        <a href="#contato" class="svlink">Saber mais <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="svcard rv d4">
+        <div class="svbar"></div><div class="svico">🗂️</div>
+        <h3>CRM & Leads</h3>
+        <p>Nenhum lead cai no esquecimento. Funil estruturado, follow-up automático.</p>
+        <ul class="svlist"><li>Implantação e configuração</li><li>Funil de vendas personalizado</li><li>Automações de follow-up</li><li>Integração com WhatsApp</li></ul>
+        <a href="#contato" class="svlink">Saber mais <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="svcard rv d5">
+        <div class="svbar"></div><div class="svico">🧠</div>
+        <h3>Consultoria de Vendas</h3>
+        <p>Analisamos seu processo comercial e montamos uma estratégia de aquisição escalável.</p>
+        <ul class="svlist"><li>Diagnóstico do funil atual</li><li>Estratégia de aquisição digital</li><li>Definição de métricas e metas</li><li>Acompanhamento mensal</li></ul>
+        <a href="#contato" class="svlink">Saber mais <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" id="como-funciona">
+  <div class="cnt">
+    <div class="rv" style="text-align:center"><div class="sbadge">Como funciona</div><h2 class="stitle">Do zero ao <em>primeiro lead</em><br/>em 7 dias</h2></div>
+    <div class="steps">
+      <div class="step rv d1"><div class="stepn">01</div><h4>Reunião de briefing</h4><p>Entendemos seu negócio e objetivos antes de escrever uma linha de código.</p></div>
+      <div class="step rv d2"><div class="stepn">02</div><h4>Estratégia + Wireframe</h4><p>Planejamos cada seção para guiar o visitante até a conversão.</p></div>
+      <div class="step rv d3"><div class="stepn">03</div><h4>Desenvolvimento</h4><p>Site rápido, responsivo, com pixels e rastreamento configurado.</p></div>
+      <div class="step rv d4"><div class="stepn">04</div><h4>Publicação + Tráfego</h4><p>Site no ar e campanhas ativadas para gerar leads imediatamente.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="sec ressec" id="resultados">
+  <div class="cnt">
+    <div class="rv"><div class="sbadge">Resultados reais</div><h2 class="stitle">Números que <em>provam</em><br/>o que fazemos</h2><div class="rline"></div><br/><p class="ssub">Clientes reais, resultados mensuráveis. Aqui não tem promessa vazia.</p></div>
+    <div class="resgrid">
+      <div class="rescard rv d1"><div class="resn">+340%</div><div class="resl">Aumento em leads</div><div class="resd">Clínica em SP — de 12 para 53 leads/mês após novo site + Google Ads.</div></div>
+      <div class="rescard rv d2"><div class="resn">R$4,20</div><div class="resl">Custo por lead</div><div class="resd">Imobiliária no RJ — leads qualificados via Meta Ads com landing page dedicada.</div></div>
+      <div class="rescard rv d3"><div class="resn">8 dias</div><div class="resl">Primeiro lead</div><div class="resd">E-commerce — site no ar e primeira venda em menos de 2 semanas do briefing.</div></div>
+      <div class="rescard rv d4"><div class="resn">2.8x</div><div class="resl">ROAS médio</div><div class="resd">Retorno sobre investimento médio das campanhas ativas gerenciadas pela UP7.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec">
+  <div class="cnt">
+    <div class="rv" style="text-align:center"><div class="sbadge">Depoimentos</div><h2 class="stitle">O que dizem nossos <em>clientes</em></h2></div>
+    <div class="testgrid">
+      <div class="testcard rv d1"><div class="tstars">★★★★★</div><p class="ttxt">"Antes meu site era só cartão de visita digital. A UP7 refez tudo com foco em vendas e agora recebo 40 leads/mês pelo Google."</p><div class="tauthor"><div class="tav">R</div><div><div class="tname">Ricardo Mendes</div><div class="trole">Clínica Odontológica — SP</div></div></div></div>
+      <div class="testcard rv d2"><div class="tstars">★★★★★</div><p class="ttxt">"Em uma semana o site estava no ar e em duas já tinha vendas do Meta Ads. A equipe entendeu meu negócio rapidinho."</p><div class="tauthor"><div class="tav">A</div><div><div class="tname">Amanda Costa</div><div class="trole">Loja de Moda — RJ</div></div></div></div>
+      <div class="testcard rv d3"><div class="tstars">★★★★★</div><p class="ttxt">"Tentei outras agências e nunca tive resultado. Com a UP7 foi diferente — CRM, site e Google Ads. Triplicamos o faturamento."</p><div class="tauthor"><div class="tav">F</div><div><div class="tname">Felipe Santos</div><div class="trole">Imobiliária — BH</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="sec formsec" id="contato">
+  <div class="cnt">
+    <div class="formgrid">
+      <div class="rv">
+        <div class="sbadge">Fale conosco</div>
+        <h2 class="stitle">Pronto para <em>vender mais?</em></h2>
+        <div class="rline"></div><br/>
+        <p class="ssub">Preencha ao lado e um especialista entra em contato pelo WhatsApp em até 1 hora útil.</p>
+        <ul class="fbens">
+          <li><div class="ficon">⚡</div><span><strong>Diagnóstico gratuito</strong> — analisamos seu site sem custo</span></li>
+          <li><div class="ficon">🎯</div><span><strong>Proposta personalizada</strong> — sem pacotes genéricos</span></li>
+          <li><div class="ficon">🤝</div><span><strong>Sem fidelidade forçada</strong> — resultado nos mantém juntos</span></li>
+          <li><div class="ficon">📊</div><span><strong>Relatórios transparentes</strong> — você sabe o que está acontecendo</span></li>
+        </ul>
+      </div>
+      <div class="fbox rv d2">
+        <div class="ftitle">Diagnóstico gratuito</div>
+        <div class="fsub">Resposta em até 1 hora no WhatsApp</div>
+        <form onsubmit="handleSubmit(event)">
+          <div class="fg"><label>Seu nome *</label><input type="text" id="nome" placeholder="João Silva" required/></div>
+          <div class="fg"><label>WhatsApp *</label><input type="tel" id="whatsapp" placeholder="(85) 99999-9999" required/></div>
+          <div class="fg"><label>Seu negócio *</label><input type="text" id="negocio" placeholder="Ex: clínica, loja, imobiliária..." required/></div>
+          <div class="fg"><label>Maior desafio hoje? *</label>
+            <select id="desafio" required>
+              <option value="" disabled selected>Selecionar...</option>
+              <option value="site">Preciso de um site profissional</option>
+              <option value="leads">Quero gerar mais leads</option>
+              <option value="google">Quero anunciar no Google</option>
+              <option value="meta">Quero anunciar no Meta/Instagram</option>
+              <option value="crm">Preciso organizar meu funil de vendas</option>
+              <option value="tudo">Quero tudo junto</option>
+            </select>
+          </div>
+          <button type="submit" class="fsubmit">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.55 4.116 1.512 5.849L0 24l6.335-1.502A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+            Quero diagnóstico gratuito
+          </button>
+          <p class="fnote">🔒 Sem spam. Sem fidelidade. Só resultado.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="cnt">
+    <div class="rv"><div class="sbadge">Dúvidas</div><h2 class="stitle">Perguntas <em>frequentes</em></h2></div>
+    <div class="faqlist">
+      <div class="faqi"><button class="faqq" onclick="faq(this)">Quanto tempo leva para ficar pronto?<span class="faqarr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="faqa">Landing pages ficam prontas em 5 a 7 dias úteis. Sites completos em 10 a 15 dias. O prazo começa após aprovação do briefing e primeiro pagamento.</div></div>
+      <div class="faqi"><button class="faqq" onclick="faq(this)">Preciso contratar tráfego pago junto com o site?<span class="faqarr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="faqa">Não. O site pode ser contratado de forma independente. Mas para gerar leads rapidamente, recomendamos Google Ads ou Meta Ads logo após o lançamento.</div></div>
+      <div class="faqi"><button class="faqq" onclick="faq(this)">Vocês criam o conteúdo e os textos?<span class="faqarr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="faqa">Sim. Criamos o copy com foco em conversão. Você passa as informações do seu negócio e aprovamos juntos antes de publicar.</div></div>
+      <div class="faqi"><button class="faqq" onclick="faq(this)">Tem contrato de fidelidade?<span class="faqarr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="faqa">Para sites: pagamento único, sem mensalidade. Para tráfego e CRM: contrato mensal com 30 dias de aviso. Resultado é o único motivo para continuar juntos.</div></div>
+      <div class="faqi"><button class="faqq" onclick="faq(this)">O site fica na minha posse depois?<span class="faqarr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="faqa">Sim. Domínio e hospedagem são seus. O site é 100% seu após entrega e quitação.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-sec">
+  <div class="rv">
+    <h2 class="stitle">Chega de site que <em>não vende.</em></h2>
+    <p class="ssub">Fale agora com um especialista da UP7 e descubra o que está travando suas vendas — sem custo.</p>
+    <a href="https://wa.me/5585991507807?text=Ol%C3%A1%2C+vim+pelo+site+da+UP7+Performance+e+quero+um+diagn%C3%B3stico+gratuito" class="wbtn" target="_blank" rel="noopener">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.55 4.116 1.512 5.849L0 24l6.335-1.502A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      Falar no WhatsApp agora
+    </a>
+    <p class="wguarantee">Respondemos em até 1 hora &bull; Diagnóstico 100% gratuito</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot">
+    <div><div class="flt">UP7</div><div class="fls">Performance</div></div>
+    <p class="ftxt">&copy; 2026 UP7 Performance. Todos os direitos reservados.</p>
+    <div class="flinks">
+      <a href="https://www.instagram.com/up7performance/" target="_blank">Instagram</a>
+      <a href="#contato">Contato</a>
+      <a href="#servicos">Serviços</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOAT WPP -->
+<a href="https://wa.me/5585991507807?text=Ol%C3%A1%2C+vim+pelo+site+da+UP7+Performance+e+quero+um+diagn%C3%B3stico+gratuito" class="fwpp" target="_blank" rel="noopener">
+  <svg width="25" height="25" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.55 4.116 1.512 5.849L0 24l6.335-1.502A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+</a>
+
+<script>
+// SCROLL REVEAL
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv').forEach(function(el) { obs.observe(el); });
+
+// FAQ
+function faq(btn) {
+  var item = btn.closest('.faqi');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faqi.open').forEach(function(i) { i.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+// VIDEO
+// Quando tiver o vídeo pronto, troque o valor abaixo pelo ID do YouTube
+// Exemplo: se o link for youtube.com/watch?v=dQw4w9WgXcQ → VID = 'dQw4w9WgXcQ'
+var VID = 'SEU_VIDEO_ID_AQUI';
+
+function handleVideoClick() {
+  if (VID === 'SEU_VIDEO_ID_AQUI') {
+    document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+  var box = document.getElementById('vbox');
+  box.style.position = 'relative';
+  box.style.paddingBottom = '56.25%';
+  box.style.height = '0';
+  box.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + VID +
+    '?autoplay=1&rel=0&modestbranding=1" style="position:absolute;inset:0;border:none"' +
+    ' allow="autoplay;encrypted-media" allowfullscreen></iframe>';
+}
+
+function playVideo(e) {
+  e.preventDefault();
+  document.getElementById('video-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// PHONE MASK
+var ph = document.getElementById('whatsapp');
+if (ph) {
+  ph.addEventListener('input', function() {
+    var v = this.value.replace(/\D/g, '').substring(0, 11);
+    if (v.length > 6) v = '(' + v.substring(0,2) + ') ' + v.substring(2,7) + '-' + v.substring(7);
+    else if (v.length > 2) v = '(' + v.substring(0,2) + ') ' + v.substring(2);
+    else if (v.length > 0) v = '(' + v;
+    this.value = v;
+  });
+}
+
+// FORM → WHATSAPP
+function handleSubmit(e) {
+  e.preventDefault();
+  var nome = document.getElementById('nome').value.trim();
+  var wpp  = document.getElementById('whatsapp').value.trim();
+  var neg  = document.getElementById('negocio').value.trim();
+  var des  = document.getElementById('desafio').value;
+  var msg  = encodeURIComponent(
+    'Olá! Vim pelo site da UP7 Performance.\n\n' +
+    '*Nome:* ' + nome + '\n' +
+    '*Negócio:* ' + neg + '\n' +
+    '*Desafio:* ' + des + '\n' +
+    '*WhatsApp:* ' + wpp + '\n\n' +
+    'Quero meu diagnóstico gratuito!'
+  );
+  window.open('https://wa.me/5585991507807?text=' + msg, '_blank');
+}
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
